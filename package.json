@@ -1,7 +1,11 @@
 {
   "name": "2.Worker-server",
+  "author": "Nusrat",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
