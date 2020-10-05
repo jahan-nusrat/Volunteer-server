@@ -31,7 +31,7 @@ client.connect((err) => {
 	//post categories
 	app.post('/addCategories', (req, res) => {
 		const category = req.body;
-		categoriesDB.insertMany(category).then((result) => {
+		categoriesDB.insertOne(category).then((result) => {
 			res.send(result);
 		});
 	});
@@ -72,6 +72,7 @@ client.connect((err) => {
 		});
 	});
 
+	//find events by email
 	app.get('/my-events/:email', (req, res) => {
 		volunteersDB.find({ email: req.params.email }).toArray((err, documents) => {
 			if (err) {
@@ -86,12 +87,14 @@ client.connect((err) => {
 		});
 	});
 
+	//delete an event by id
 	app.delete('/delete/:id', (req, res) => {
 		volunteersDB.deleteOne({ _id: ObjectId(req.params.id) }).then((result) => {
 			res.send(result.deletedCount > 0);
 		});
 	});
 
+	//find all registered events
 	app.get('/all-events', (req, res) => {
 		volunteersDB.find().toArray((err, documents) => {
 			if (err) {
